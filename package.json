@@ -1,6 +1,28 @@
 {
+  "name": "mern-server",
+  "version": "1.0.0",
+  "description": "Social Network API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon"
+  },
+  "keywords": [],
+  "author": "Davis Ransom",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3",
+    "express": "^4.17.1",
     "mongoose": "^6.2.5"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavisRansom/SocialNetworkAPI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DavisRansom/SocialNetworkAPI/issues"
+  },
+  "homepage": "https://github.com/DavisRansom/SocialNetworkAPI#readme"
 }
