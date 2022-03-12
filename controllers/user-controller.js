@@ -69,17 +69,31 @@ const userController = {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((dbUserData) => {
         if (!dbUserData) {
-          return res.status(404).json({ message: 'No user with this id!' });
+          throw new Error({ message: 'No user with this id!', status: 404 })
         }
-
-        // BONUS: get ids of user's `thoughts` and delete them all
-        return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
+        return dbUserData
       })
-      .then(() => {
+      .then((dbUserData) => {
+        // BONUS: get ids of user's `thoughts` and delete them all
+        return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } })
+          .then(() => dbUserData);
+      })
+      .then((dbUserData) => {
+        return User.updateMany(
+          { friends: dbUserData._id },
+         { $pull: { friends: dbUserData._id } },
+          { runValidators: true, new: true }
+          )
+      })
+      .then((dbUserData) => {
         res.json({ message: 'User and associated thoughts deleted!' });
       })
       .catch((err) => {
         console.log(err);
+        if (err.status) {
+          res.status(err.status).json(err)
+          return
+        }
         res.status(500).json(err);
       });
   },

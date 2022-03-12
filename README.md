@@ -94,6 +94,7 @@ Use the following guidelines to set up your models and API routes:
 * `friends`
   * Array of `_id` values referencing the `User` model (self-reference)
 
+
 Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
 
 
@@ -150,32 +151,26 @@ Create a virtual called `reactionCount` that retrieves the length of the thought
 
 This will not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model.
 
-### API Routes
+<!-- ### API Routes
 
 **`/api/users`**
-
-* `GET` all users
-
-* `GET` a single user by its `_id` and populated thought and friend data
-
-* `POST` a new user:
-
-```json
+`POST` a new user:
+json
 // example data
 {
   "username": "lernantino",
   "email": "lernantino@gmail.com"
-}
-```
-
+* `GET` all users
+* `GET` a single user by its `_id` and populated thought and friend data
 * `PUT` to update a user by its `_id`
 
+
+//make multiple users to have one be a friend of the other and to delete one
 * `DELETE` to remove user by its `_id`
 
-**BONUS**: Remove a user's associated thoughts when deleted.
+**BONUS**: Remove a user's associated thoughts when deleted. -->
 
----
-
+<!-- 
 **`/api/users/:userId/friends/:friendId`**
 
 * `POST` to add a new friend to a user's friend list
@@ -199,11 +194,11 @@ This will not be a model, but rather will be used as the `reaction` field's subd
   "username": "lernantino",
   "userId": "5edff358a0fcb779aa7b118b"
 }
-```
-
+``` -->
+<!-- 
 * `PUT` to update a thought by its `_id`
 
-* `DELETE` to remove a thought by its `_id`
+* `DELETE` to remove a thought by its `_id` -->
 
 ---
 
